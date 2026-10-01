@@ -8,12 +8,35 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Fco. Javier Gallegos Ortega"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonContinuar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="38dp"
+        android:text="Continuar"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCancelar"
+        app:layout_constraintTop_toBottomOf="@+id/textNombre" />
+
+    <Button
+        android:id="@+id/buttonCancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="Cancelar"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonContinuar"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
