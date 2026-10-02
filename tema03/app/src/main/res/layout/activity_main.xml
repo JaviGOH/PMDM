@@ -20,23 +20,20 @@
 
     <Button
         android:id="@+id/buttonContinuar"
+        style="@style/BotonTarea"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
         android:layout_marginEnd="38dp"
         android:text="@string/boton_continuar"
-        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/buttonCancelar"
         app:layout_constraintTop_toBottomOf="@+id/textNombre"
         app:backgroundTint="@color/verde_continuar"/>
 
     <Button
         android:id="@+id/buttonCancelar"
+        style="@style/BotonTarea"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:text="@string/boton_cancelar"
-        android:textSize="24sp"
         app:backgroundTint="@color/rojo_cancelar"
         app:layout_constraintBaseline_toBaselineOf="@+id/buttonContinuar"
         app:layout_constraintEnd_toEndOf="parent" />
