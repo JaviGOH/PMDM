@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvEmail"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="@string/correo_electronico"
+        app:layout_constraintBottom_toBottomOf="@id/editTextTextEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/editTextTextEmailAddress" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@id/editTextTextEmailAddress"
+        app:layout_constraintStart_toStartOf="@id/editTextTextEmailAddress"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextEmailAddress" />
+
+    <TextView
+        android:id="@+id/tvPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="@string/contrasena"
+        app:layout_constraintBottom_toBottomOf="@id/editTextTextPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/editTextTextPassword" />
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/switchRecordar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/recordar_contraseña"
+        app:layout_constraintStart_toStartOf="@id/tvPassword"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextPassword" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/continuar"
+        app:backgroundTint="@color/btnContinuar"
+        app:layout_constraintStart_toStartOf="@id/switchRecordar"
+        app:layout_constraintEnd_toEndOf="@id/switchRecordar"
+        app:layout_constraintTop_toBottomOf="@id/switchRecordar"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mensaje"
+        app:layout_constraintStart_toStartOf="@id/button"
+        app:layout_constraintEnd_toEndOf="@id/button"
+        app:layout_constraintTop_toBottomOf="@id/button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
