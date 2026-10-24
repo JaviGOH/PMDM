@@ -1,8 +1,6 @@
 package com.example.loginjaviergallegos;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.style.BackgroundColorSpan;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
 public class MainActivity extends AppCompatActivity {
-
+    // Datos de nuestro usuario válido
     private static final String CORREO_VALIDO = "javier@correo.com";
     private static final String CLAVE_VALIDA = "1234";
 
@@ -31,25 +29,30 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Busco cada elemento de la pantalla por su id y lo guardo en una variable
         EditText etCorreo = findViewById(R.id.editTextTextEmailAddress);
         EditText etClave = findViewById(R.id.editTextTextPassword);
         MaterialSwitch swRecordar = findViewById(R.id.switchRecordar);
         Button btnContinuar = findViewById(R.id.button);
         TextView tvMensaje = findViewById(R.id.textView);
 
-        btnContinuar.setOnClickListener(v ->  {
+        btnContinuar.setOnClickListener(v -> {
+            // Leo lo escrito y al correo le quito los espacios de los extremos
             String correo = etCorreo.getText().toString().trim();
             String clave = etClave.getText().toString();
 
             if (correo.equals(CORREO_VALIDO) && clave.equals(CLAVE_VALIDA)) {
+                // Acceso correcto, el mensaje depende del interruptor
                 if (swRecordar.isChecked()) {
                     tvMensaje.setText(R.string.acceso_correcto_recordar);
-                }else {
+                } else {
                     tvMensaje.setText(R.string.acceso_correcto);
                 }
                 tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.correcto));
 
-            }else {
+            } else {
+                // Datos incorrectos y mensaje en rojo
                 tvMensaje.setText(R.string.acceso_incorrecto);
                 tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.incorrecto));
             }

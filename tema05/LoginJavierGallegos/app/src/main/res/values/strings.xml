@@ -2,7 +2,7 @@
     <string name="app_name">LoginJavierGallegos</string>
     <string name="correo_electronico">Correo electrónico:</string>
     <string name="contrasena">Contraseña:</string>
-    <string name="recordar_contraseña">Recordar contraseña</string>
+    <string name="recordar_contrasena">Recordar contraseña</string>
     <string name="continuar">Continuar</string>
 
     <string name="hint_correo">javier@correo.com</string>
