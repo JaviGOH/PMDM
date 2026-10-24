@@ -42,6 +42,17 @@ public class MainActivity extends AppCompatActivity {
             String correo = etCorreo.getText().toString().trim();
             String clave = etClave.getText().toString();
 
+            // Si algun campo está vacio aviso en esa caja y salgo sin comprobar nada más
+            if (correo.isEmpty()) {
+                etCorreo.setError(getString(R.string.falta_correo));
+                return;
+            }
+
+            if (clave.isEmpty()) {
+                etClave.setError(getString(R.string.falta_clave));
+                return;
+            }
+
             if (correo.equals(CORREO_VALIDO) && clave.equals(CLAVE_VALIDA)) {
                 // Acceso correcto, el mensaje depende del interruptor
                 if (swRecordar.isChecked()) {
