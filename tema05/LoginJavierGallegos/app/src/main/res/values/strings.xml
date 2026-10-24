@@ -4,4 +4,14 @@
     <string name="contrasena">Contraseña:</string>
     <string name="recordar_contraseña">Recordar contraseña</string>
     <string name="continuar">Continuar</string>
+
+    <string name="hint_correo">javier@correo.com</string>
+    <string name="hint_clave">Tu contraseña</string>
+
+    <string name="acceso_correcto">Usuario y contraseña correctos</string>
+    <string name="acceso_correcto_recordar">Usuario y contraseña correctos. Almacenados para siguientes accesos</string>
+    <string name="acceso_incorrecto">Usuario y/o contraseña incorrectos</string>
+    <string name="falta_correo">Escribe tu correo</string>
+    <string name="falta_clave">Escribe la contraseña</string>
+    <string name="intentos_agotados">Demasiados intentos</string>
 </resources>
