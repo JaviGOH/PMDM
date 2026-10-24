@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     // Datos de nuestro usuario válido
     private static final String CORREO_VALIDO = "javier@correo.com";
     private static final String CLAVE_VALIDA = "1234";
+    //Contador de intentos fallidos
+    private int intentosFallidos = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (correo.equals(CORREO_VALIDO) && clave.equals(CLAVE_VALIDA)) {
-                // Acceso correcto, el mensaje depende del interruptor
+                // Acceso correcto, reinicio el contador y el mensaje depende del interruptor
+                intentosFallidos = 0;
                 if (swRecordar.isChecked()) {
                     tvMensaje.setText(R.string.acceso_correcto_recordar);
                 } else {
@@ -63,8 +67,21 @@ public class MainActivity extends AppCompatActivity {
                 tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.correcto));
 
             } else {
-                // Datos incorrectos y mensaje en rojo
+                // Datos incorrectos cuento el fallo y mensaje en rojo
+                intentosFallidos++;
                 tvMensaje.setText(R.string.acceso_incorrecto);
+                tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.incorrecto));
+                intentosFallidos++;
+
+                if (intentosFallidos >= 3) {
+                    //Al tercer fallo bloqueo el botón y aviso con un mensaje y el Toast
+                    btnContinuar.setEnabled(false);
+                    tvMensaje.setText(R.string.intentos_agotados);
+                    Toast.makeText(this, R.string.intentos_agotados, Toast.LENGTH_SHORT).show();
+                } else {
+                    tvMensaje.setText(R.string.acceso_incorrecto);
+                }
+                //El mensaje de erro siempre va en rojo
                 tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.incorrecto));
             }
         });
