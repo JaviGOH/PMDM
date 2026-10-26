@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ListaJavierGallegos</string>
     <string name="imagen_elemento">Imagen del elemento</string>
+    <string name="cabecera">Platos del mundo</string>
 </resources>
