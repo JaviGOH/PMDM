@@ -16,7 +16,7 @@
     app:layout_constraintTop_toTopOf="parent"
     tools:srcCompat="@tools:sample/avatars" />
 <TextView
-android:id="@+id/tvTitulo"
+android:id="@+id/tvReceta"
 android:layout_width="0dp"
 android:layout_height="wrap_content"
 android:layout_marginStart="16dp"
@@ -25,15 +25,15 @@ android:textStyle="bold"
 app:layout_constraintStart_toEndOf="@id/ivImagen"
 app:layout_constraintEnd_toEndOf="parent"
 app:layout_constraintTop_toTopOf="@id/ivImagen"
-tools:text="Título" />
+tools:text="Receta" />
 <TextView
-android:id="@+id/tvSubtitulo"
+android:id="@+id/tvTipo"
 android:layout_width="0dp"
 android:layout_height="wrap_content"
 android:layout_marginStart="16dp"
 android:layout_marginTop="4dp"
 app:layout_constraintStart_toEndOf="@id/ivImagen"
 app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintTop_toBottomOf="@id/tvTitulo"
-tools:text="Subtítulo" />
+app:layout_constraintTop_toBottomOf="@id/tvReceta"
+tools:text="Tipo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
