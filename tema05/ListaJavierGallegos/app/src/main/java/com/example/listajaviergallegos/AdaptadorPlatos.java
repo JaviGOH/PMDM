@@ -26,10 +26,15 @@ public class AdaptadorPlatos extends RecyclerView.Adapter<AdaptadorPlatos.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Plato pelicula = platos.get(position);
-        holder.tvReceta.setText(pelicula.getReceta());
-        holder.tvTipo.setText(pelicula.getTipo());
-        holder.ivImagen.setImageResource(pelicula.getImagen());
+        Plato plato = platos.get(position);
+        holder.tvReceta.setText(plato.getReceta());
+        holder.tvTipo.setText(plato.getTipo());
+        holder.ivImagen.setImageResource(plato.getImagen());
+
+        // Al tocar la fila, un Toast con su título
+        holder.itemView.setOnClickListener(v -> Toast.makeText(v.getContext(),
+                        plato.getReceta(),
+                        Toast.LENGTH_SHORT).show());
     }
 
     @Override
