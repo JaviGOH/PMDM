@@ -21,3 +21,30 @@ tema05/LoginJavierGallegos/gradlew.bat
 
 tema05/LoginJavierGallegos/gradle/
 
+/app/.gitignore
+/app/src/main/res/xml/backup_rules.xml
+/app/src/main/res/xml/data_extraction_rules.xml
+/app/src/androidTest/java/com/example/loginjaviergallegos/ExampleInstrumentedTest.java
+/app/src/test/java/com/example/loginjaviergallegos/ExampleUnitTest.java
+/gradle.properties
+/gradle/gradle-daemon-jvm.properties
+/gradle/wrapper/gradle-wrapper.jar
+/gradle/wrapper/gradle-wrapper.properties
+/gradlew
+/gradlew.bat
+/app/src/main/res/mipmap-hdpi/ic_launcher.webp
+/app/src/main/res/mipmap-mdpi/ic_launcher.webp
+/app/src/main/res/mipmap-xhdpi/ic_launcher.webp
+/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp
+/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp
+/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+/app/src/main/res/drawable/ic_launcher_background.xml
+/app/src/main/res/drawable/ic_launcher_foreground.xml
+/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp
+/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp
+/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp
+/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp
+/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp
+/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+/gradle/libs.versions.toml
+/app/src/main/keepRules/rules.keep
