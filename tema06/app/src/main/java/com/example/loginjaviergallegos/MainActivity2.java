@@ -1,6 +1,8 @@
 package com.example.loginjaviergallegos;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -21,6 +23,8 @@ public class MainActivity2 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main2);
 
+        Button btnCerrarSesion = findViewById(R.id.btn_cerrar_sesion);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -37,5 +41,13 @@ public class MainActivity2 extends AppCompatActivity {
         if (correo != null) {
             tview_saludo_con_correo.setText(getString(R.string.tview_saludo_con_correo, correo));
         }
+
+        //El listener para cuando pulsemos el boton cerrar sesión ejecute finish() y cierre la segunda view
+        btnCerrarSesion.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish(); // Cierra el menú para volver al Login
+        });
+
     }
 }
