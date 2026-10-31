@@ -1,6 +1,7 @@
 package com.example.loginjaviergallegos;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     //Contador de intentos fallidos
     private int intentosFallidos = 0;
 
+    //Atributo para las preferencias compartidas
+    private SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +38,23 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        //Inicializo SharedPreferences
+        prefs = getSharedPreferences("sesion", MODE_PRIVATE);
+
         // Busco cada elemento de la pantalla por su id y lo guardo en una variable
         EditText etCorreo = findViewById(R.id.editTextTextEmailAddress);
         EditText etClave = findViewById(R.id.editTextTextPassword);
         MaterialSwitch swRecordar = findViewById(R.id.switchRecordar);
         Button btnContinuar = findViewById(R.id.button);
         TextView tvMensaje = findViewById(R.id.textView);
+
+        //Leer y autocompletar al abrir la app
+        String guardado = prefs.getString("correo", "");
+        if (!guardado.isEmpty()) {
+            etCorreo.setText(guardado);
+            swRecordar.setChecked(true);
+            etClave.requestFocus(); // Pone el foco en la contraseña
+        }
 
         btnContinuar.setOnClickListener(v -> {
             // Leo lo escrito y al correo le quito los espacios de los extremos
@@ -59,14 +74,13 @@ public class MainActivity extends AppCompatActivity {
 
             if (correo.equals(CORREO_VALIDO) && clave.equals(CLAVE_VALIDA)) {
                 // Acceso correcto, reinicio el contador y el mensaje depende del interruptor
-                intentosFallidos = 0;
                 if (swRecordar.isChecked()) {
-                    tvMensaje.setText(R.string.acceso_correcto_recordar);
+                    prefs.edit().putString("correo", correo).apply();
                 } else {
-                    tvMensaje.setText(R.string.acceso_correcto);
+                    prefs.edit().remove("correo").apply();
                 }
-                tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.correcto));
 
+                intentosFallidos = 0;
                 // Cuando correo y contraseña son válidos:
                 Intent intent = new Intent(this, MainActivity2.class);
                 intent.putExtra(MainActivity2.EXTRA_CORREO, correo);
@@ -75,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
                 // Datos incorrectos cuento el fallo y mensaje en rojo
-                intentosFallidos++;
                 tvMensaje.setText(R.string.acceso_incorrecto);
                 tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.incorrecto));
                 intentosFallidos++;
