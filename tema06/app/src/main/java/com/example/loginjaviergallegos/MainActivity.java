@@ -1,5 +1,6 @@
 package com.example.loginjaviergallegos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,6 +66,12 @@ public class MainActivity extends AppCompatActivity {
                     tvMensaje.setText(R.string.acceso_correcto);
                 }
                 tvMensaje.setTextColor(ContextCompat.getColor(this, R.color.correcto));
+
+                // Cuando correo y contraseña son válidos:
+                Intent intent = new Intent(this, MainActivity2.class);
+                intent.putExtra(MainActivity2.EXTRA_CORREO, correo);
+                startActivity(intent);
+                finish();
 
             } else {
                 // Datos incorrectos cuento el fallo y mensaje en rojo
