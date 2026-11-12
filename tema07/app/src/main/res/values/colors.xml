@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="fondo_reproductor">#FFF8E1</color>
+    <color name="materialToolbar">#FF9800</color>
+    <color name="botones">#FF9800</color>
 </resources>

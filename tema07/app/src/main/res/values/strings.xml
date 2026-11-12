@@ -4,6 +4,7 @@
     <string name="autor_cancion">Autor:</string>
     <string name="inicio_cancion">00:00</string>
     <string name="final_cancion">00:00</string>
-    <string name="boton_play">Play</string>
-    <string name="boton_pausa">Pausa</string>
+    <string name="boton_play">▶ PLAY</string>
+    <string name="boton_pausa">⏸ PAUSE</string>
+    <string name="titleMaterial">Reproductor_JavierGallegos</string>
 </resources>

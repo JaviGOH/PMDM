@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.Reproductor_JavierGallegos" parent="Base.Theme.Reproductor_JavierGallegos" />
+
+    <style name="TituloToolbar" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">#0D47A1</item>
+    </style>
 </resources>
