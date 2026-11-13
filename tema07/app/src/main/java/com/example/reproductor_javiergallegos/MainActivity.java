@@ -129,4 +129,28 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    //Sobreescribo los metodos onStop(), onStart() y onDestroy()
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //Pauso la música cuando la app deja de verse
+        player.pause();
+        //Dejo de actualizar la barra, si no seguiría corriendo en segundo plano
+        handler.removeCallbacks(actualizarBarra);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //Vuelvo a arrancar el bucle que actualiza la barra
+        handler.post(actualizarBarra);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //Libero los recursos del reproductor al cerrar la actividad
+        player.release();
+    }
+
 }
