@@ -7,4 +7,9 @@
     <string name="boton_play">▶ PLAY</string>
     <string name="boton_pausa">⏸ PAUSE</string>
     <string name="titleMaterial">🎶 Reproductor_JavierGallegos 🎧</string>
+    <string name="efectos_sonidos">Efectos de sonido</string>
+    <string name="efecto_aplausos">👏 Aplausos</string>
+    <string name="efecto_explosion">💥 Explosión</string>
+    <string name="efecto_gritos">😱 Gritos</string>
+    <string name="efecto_tecleando">⌨️ Tecleando</string>
 </resources>

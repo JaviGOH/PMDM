@@ -1,5 +1,7 @@
 package com.example.reproductor_javiergallegos;
 
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.media.browse.MediaBrowser;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,11 +28,15 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Declaro el atributo player
+    //Declaro el atributos
     private ExoPlayer player;
     private SeekBar seekBar;
     private TextView tvTiempoActual, tvDuracion;
     private final Handler handler = new Handler(Looper.getMainLooper());
+
+    private SoundPool soundPool;
+    private int btnAplausos, btnExplosion, btnGritos, btnTecleando;
+    private int sonidosCargados = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +112,53 @@ public class MainActivity extends AppCompatActivity {
             player.pause();
         });
         handler.post(actualizarBarra);
+
+        btnPause.setOnClickListener(v -> player.pause());
+
+        handler.post(actualizarBarra);
+
+        //--- Efectos de sonido con SoundPool ---
+
+        //Configuro el SoundPool para efectos cortos
+        AudioAttributes atributos = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+
+        soundPool = new SoundPool.Builder()
+                .setMaxStreams(4)
+                .setAudioAttributes(atributos)
+                .build();
+
+        //Cargo los cuatro efectos y guardo sus ids para reproducirlos después
+        btnAplausos = soundPool.load(this, R.raw.aplausos, 1);
+        btnExplosion = soundPool.load(this, R.raw.explosion, 1);
+        btnGritos = soundPool.load(this, R.raw.gritos, 1);
+        btnTecleando = soundPool.load(this, R.raw.teclado, 1);
+
+        //Recupero la referencia a los botones de efectos
+        Button btnAplauso = findViewById(R.id.btnAplausos);
+        Button btnCampana = findViewById(R.id.btnExplosion);
+        Button btnLaser = findViewById(R.id.btnGritos);
+        Button btnMoneda = findViewById(R.id.btnTecleando);
+
+        //Activo los botones solo cuando los cuatro sonidos están cargados
+        soundPool.setOnLoadCompleteListener((sp, sampleId, estado) -> {
+            sonidosCargados++;
+            if (sonidosCargados == 4) {
+                btnAplauso.setEnabled(true);
+                btnCampana.setEnabled(true);
+                btnLaser.setEnabled(true);
+                btnMoneda.setEnabled(true);
+            }
+        });
+
+        //Cada botón reproduce su efecto correspondiente
+        btnAplauso.setOnClickListener(v -> soundPool.play(btnAplausos, 1f, 1f, 1, 0, 1f));
+        btnCampana.setOnClickListener(v -> soundPool.play(btnExplosion, 1f, 1f, 1, 0, 1f));
+        btnLaser.setOnClickListener(v -> soundPool.play(btnGritos, 1f, 1f, 1, 0, 1f));
+        btnMoneda.setOnClickListener(v -> soundPool.play(btnTecleando, 1f, 1f, 1, 0, 1f));
+
     }
 
     // Metodo para formatear y pasar de milisegundos a mm:ss
@@ -151,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         //Libero los recursos del reproductor al cerrar la actividad
         player.release();
+        soundPool.release();
     }
 
 }
