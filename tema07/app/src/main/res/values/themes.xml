@@ -10,7 +10,11 @@
     <style name="TituloToolbar" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:fontFamily">@font/poppins_medium</item>
         <item name="fontFamily">@font/poppins_medium</item>
-        <item name="android:textSize">26sp</item>
+        <item name="android:shadowColor">#80000000</item>
+        <item name="android:shadowDx">3</item>
+        <item name="android:shadowDy">3</item>
+        <item name="android:shadowRadius">4</item>
+        <item name="android:textSize">21sp</item>
         <item name="android:textColor">#0D47A1</item>
     </style>
 </resources>

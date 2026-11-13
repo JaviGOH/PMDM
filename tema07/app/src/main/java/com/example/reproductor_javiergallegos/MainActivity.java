@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import androidx.media3.common.MediaItem;
+import androidx.media3.common.Player;
 import androidx.media3.exoplayer.ExoPlayer;
 
 import android.widget.Button;
@@ -51,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Creo el listener para PLAY añadiendo la llamada player.play()
         btnPlay.setOnClickListener(v -> {
+            //Compruebo si la canción ha terminado y vuelve a empezar
+            if (player.getPlaybackState() == Player.STATE_ENDED) {
+                player.seekTo(0);
+            }
             player.play();
         });
 
