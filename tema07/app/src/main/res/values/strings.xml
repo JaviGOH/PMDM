@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Reproductor_JavierGallegos</string>
-    <string name="titulo_cancion">Título:</string>
-    <string name="autor_cancion">Autor:</string>
+    <string name="titulo_cancion">Motivational Trailer</string>
+    <string name="autor_cancion">The_Mountain</string>
     <string name="inicio_cancion">00:00</string>
     <string name="final_cancion">00:00</string>
     <string name="boton_play">▶ PLAY</string>

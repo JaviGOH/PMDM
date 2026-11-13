@@ -13,6 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/titulo_cancion"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#3E2723"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -40,6 +44,7 @@
         android:layout_marginTop="44dp"
         android:layout_marginBottom="459dp"
         android:scrollbarSize="10dp"
+        android:background="@color/botones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,12 +57,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/autor_cancion"
+        android:textSize="14sp"
+        android:textColor="#8D6E63"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvInicio_cancion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -67,14 +75,14 @@
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvFinal_cancion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/final_cancion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.907"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/tvInicio_cancion"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <Button
@@ -91,7 +99,7 @@
         android:shadowRadius="4"
         app:backgroundTint="@color/botones"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/tvInicio_cancion" />
 
     <Button
         android:id="@+id/button2"
@@ -107,6 +115,6 @@
         android:textColor="#0D47A1"
         app:backgroundTint="@color/botones"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFinal_cancion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
