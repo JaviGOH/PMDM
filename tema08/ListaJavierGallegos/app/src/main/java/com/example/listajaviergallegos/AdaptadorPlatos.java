@@ -8,6 +8,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 public class AdaptadorPlatos extends RecyclerView.Adapter<AdaptadorPlatos.ViewHolder> {
     // La lista de datos que va a pintar
@@ -29,7 +32,10 @@ public class AdaptadorPlatos extends RecyclerView.Adapter<AdaptadorPlatos.ViewHo
         Plato plato = platos.get(position);
         holder.tvReceta.setText(plato.getReceta());
         holder.tvTipo.setText(plato.getTipo());
-        holder.ivImagen.setImageResource(plato.getImagen());
+        //Cambio setImageResource por Glide
+        Glide.with(holder.itemView)
+                .load(plato.getImagen())
+                .into(holder.ivImagen);
 
         // Al tocar la fila, un Toast con su título
         holder.itemView.setOnClickListener(v -> Toast.makeText(v.getContext(),

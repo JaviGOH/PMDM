@@ -4,10 +4,11 @@ public class Plato {
 
     private String receta;
     private String tipo;
-    private int imagen;
+    //La imagen pasa de int a String
+    private String imagen;
 
     //Mi constructor
-    public Plato(String receta, String tipo, int imagen) {
+    public Plato(String receta, String tipo, String imagen) {
         this.receta = receta;
         this.tipo = tipo;
         this.imagen = imagen;
@@ -22,7 +23,7 @@ public class Plato {
         return tipo;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 }
