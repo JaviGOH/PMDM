@@ -13,6 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import android.util.Log;
+import android.widget.Toast;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -26,25 +37,40 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // 1. Los datos: al menos 8 elementos
+        // 1 Los datos se leen de res/raw/datos.json
         ArrayList<Plato> platos = new ArrayList<>();
-        platos.add(new Plato("Albóndigas en salsa", "Receta casera", R.drawable.albondigas));
-        platos.add(new Plato("Canelones", "Receta casera", R.drawable.canelones));
-        platos.add(new Plato("Croquetas de serrano", "Receta casera", R.drawable.croquetas));
-        platos.add(new Plato("Lentejas caseras", "Receta casera", R.drawable.lentejas_caseras));
-        platos.add(new Plato("Pisto manchego con huevo", "Receta manchega", R.drawable.pisto_huevo));
-        platos.add(new Plato("Salmorejo", "Receta tradicional", R.drawable.salmorejo));
-        platos.add(new Plato("Ternera a la jardinera", "Receta premium", R.drawable.ternera_jadinera));
-        platos.add(new Plato("Tortilla de patatas", "Receta premium", R.drawable.tortilla_patatas));
-        platos.add(new Plato("Ramen estilo japonés", "Receta oriental", R.drawable.ramen));
-        platos.add(new Plato("Sushi", "Receta oriental", R.drawable.suchi));
-        platos.add(new Plato("Risotto parmigiano", "Receta italiana", R.drawable.risotto));
+        try {
+            JSONArray array = new JSONArray(leerRaw(R.raw.datos));
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject objeto = array.getJSONObject(i);
+                platos.add(new Plato(
+                        objeto.getString("receta"),
+                        objeto.getString("tipo"),
+                        objeto.getString("imagen")));
+            }
+        } catch (IOException | JSONException e) {
+            Toast.makeText(this, "No se pudo leer datos.json", Toast.LENGTH_LONG).show();
+            Log.e("MainActivity", "Error al leer datos.json", e);
+        }
 
-        // 2. La lista: cómo se colocan las filas y quién las pinta
+        // 2 La lista cómo se colocan las filas y quién las pinta
         RecyclerView rvLista = findViewById(R.id.rvLista);
         rvLista.setLayoutManager(new LinearLayoutManager(this));
         rvLista.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         rvLista.setAdapter(new AdaptadorPlatos(platos));
 
+    }
+    //Nuestro metodo leerRaw
+    private String leerRaw(int idRecurso) throws IOException {
+        try (InputStream entrada = getResources().openRawResource(idRecurso);
+             BufferedReader lector = new BufferedReader(
+                     new InputStreamReader(entrada, StandardCharsets.UTF_8))) {
+            StringBuilder texto = new StringBuilder();
+            String linea;
+            while ((linea = lector.readLine()) != null) {
+                texto.append(linea).append('\n');
+            }
+            return texto.toString();
+        }
     }
 }
