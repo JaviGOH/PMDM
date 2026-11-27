@@ -1,21 +1,32 @@
 <?php
-// GET ver.php?id=3 → una película en JSON
+// GET ver.php?id=3 → un plato en JSON
 require_once __DIR__ . '/datos/ConexionBD.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
-// TODO 1: lee el parámetro id de la URL con filter_var(..., FILTER_VALIDATE_INT).
-//         Si no es un número: código 400, el error ERROR_FALTA_ID en JSON y exit.
+// El id tiene que ser un número entero; si no, error 400
+$id = filter_var($_GET['id'] ?? '', FILTER_VALIDATE_INT);
+if ($id === false) {
+    http_response_code(400);
+    echo json_encode(['error' => ERROR_FALTA_ID], JSON_UNESCAPED_UNICODE);
+    exit;
+}
 
 try {
     $bd = new ConexionBD();
 
-    // TODO 2: consulta preparada con prepare('SELECT … WHERE id = ?'),
-    //         execute([$id]) y fetch() para leer una sola fila.
+    // Consulta preparada: el id nunca se pega dentro del SQL
+    $consulta = $bd->getConexion()->prepare('SELECT id, receta, tipo, imagen FROM platos WHERE id = ?');
+    $consulta->execute([$id]);
+    $fila = $consulta->fetch();
 
-    // TODO 3: si fetch() devuelve false: código 404 y el error ERROR_NO_EXISTE en JSON.
-    //         Si no, la fila con json_encode, igual que en listar.php.
-
+    // Si no hay fila, el plato no existe: error 404
+    if ($fila === false) {
+        http_response_code(404);
+        echo json_encode(['error' => ERROR_NO_EXISTE], JSON_UNESCAPED_UNICODE);
+    } else {
+        echo json_encode($fila, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+    }
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode(['error' => ERROR_CONEXION], JSON_UNESCAPED_UNICODE);
